@@ -25,15 +25,27 @@
         </div>
       </div>
       <nav class="nav" aria-label="Main navigation">
-        <a href="/dashboard.html">Dashboard</a>
-        <a href="/projects.html">Projects</a>
-        <a href="/todos.html" aria-current="page">Todos</a>
-        <a href="/notes.html">Notes</a>
-        <a href="/contacts.html">Contacts</a>
-        <a href="/messages.html">Messages</a>
-        <button id="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">🌙</button>
-        <button id="help-toggle" title="Keyboard shortcuts (or press ?)" aria-label="Show keyboard shortcuts help">❓</button>
-        <span id="auth-actions" role="status" aria-live="polite"></span>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="/dashboard.html">Dashboard</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/todos.html" aria-current="page">Todos</a>
+          <a href="/notes.html">Notes</a>
+          <a href="/contacts.html">Contacts</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">More ▾</button>
+            <div class="nav-dropdown-menu">
+              <a href="/messages.html">Messages</a>
+              <button id="help-toggle" title="Keyboard shortcuts (or press ?)" aria-label="Show keyboard shortcuts help">❓</button>
+            </div>
+          </div>
+          <button id="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">🌙</button>
+          <span id="auth-actions" role="status" aria-live="polite"></span>
+        </div>
       </nav>
     </header>
 
@@ -141,6 +153,30 @@
   </div>
 
   <script src="/app.js"></script>
+    <script>
+      // Hamburger menu toggle
+      const hamburger = document.getElementById('nav-hamburger');
+      const navLinks = document.getElementById('nav-links');
+      hamburger.addEventListener('click', function() {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        navLinks.classList.toggle('open');
+      });
+
+      // Dropdown toggle
+      const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
+      const dropdownMenu = document.querySelector('.nav-dropdown-menu');
+      dropdownToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+        dropdownToggle.setAttribute('aria-expanded', !expanded);
+        dropdownMenu.classList.toggle('open');
+      });
+      document.addEventListener('click', function() {
+        dropdownMenu.classList.remove('open');
+        dropdownToggle.setAttribute('aria-expanded', false);
+      });
+    </script>
   <script>
     let allTodos = [];
     let currentFilter = 'all';
