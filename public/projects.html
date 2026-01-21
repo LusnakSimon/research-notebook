@@ -86,30 +86,6 @@
   
 
   <script src="/app.js"></script>
-    <script>
-      // Hamburger menu toggle
-      const hamburger = document.getElementById('nav-hamburger');
-      const navLinks = document.getElementById('nav-links');
-      hamburger.addEventListener('click', function() {
-        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !expanded);
-        navLinks.classList.toggle('open');
-      });
-
-      // Dropdown toggle
-      const dropdownToggle = document.querySelector('.nav-dropdown-toggle');
-      const dropdownMenu = document.querySelector('.nav-dropdown-menu');
-      dropdownToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
-        dropdownToggle.setAttribute('aria-expanded', !expanded);
-        dropdownMenu.classList.toggle('open');
-      });
-      document.addEventListener('click', function() {
-        dropdownMenu.classList.remove('open');
-        dropdownToggle.setAttribute('aria-expanded', false);
-      });
-    </script>
   <script>
     async function loadProjects() {
       const list = document.getElementById('projects-list');

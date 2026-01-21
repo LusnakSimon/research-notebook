@@ -54,36 +54,6 @@
   </main>
 
   <script src="/app.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Hamburger menu toggle
-        var hamburger = document.getElementById('nav-hamburger');
-        var navLinks = document.getElementById('nav-links');
-        if (hamburger && navLinks) {
-          hamburger.addEventListener('click', function() {
-            var expanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !expanded);
-            navLinks.classList.toggle('open');
-          });
-        }
-
-        // Dropdown toggle
-        var dropdownToggle = document.querySelector('.nav-dropdown-toggle');
-        var dropdownMenu = document.querySelector('.nav-dropdown-menu');
-        if (dropdownToggle && dropdownMenu) {
-          dropdownToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
-            dropdownToggle.setAttribute('aria-expanded', !expanded);
-            dropdownMenu.classList.toggle('open');
-          });
-          document.addEventListener('click', function() {
-            dropdownMenu.classList.remove('open');
-            dropdownToggle.setAttribute('aria-expanded', false);
-          });
-        }
-      });
-    </script>
   <script>
     let currentUser = null;
     let contacts = [];
