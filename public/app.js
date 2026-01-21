@@ -1,3 +1,21 @@
+// Set nav profile link to current user
+async function setNavProfileLink() {
+  try {
+    const res = await api.request('/api/auth/me');
+    if (res && res.user && res.user._id) {
+      const link = document.getElementById('nav-profile-link');
+      if (link) link.href = '/profile.html?id=' + encodeURIComponent(res.user._id);
+    }
+  } catch (e) {
+    // Not logged in, leave as /profile.html
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setNavProfileLink);
+} else {
+  setNavProfileLink();
+}
 // Shared nav hamburger and dropdown logic
 function setupNavInteractions() {
   // Hamburger menu toggle
