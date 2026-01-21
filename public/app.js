@@ -610,13 +610,24 @@ async function renderAuthActions() {
       } catch (err) {
         // Silent fail - user may not be logged in
       }
-      
       el.innerHTML = `${notifBadge}<span class="muted">Hi, ${escapeHtml(res.user.name||res.user.email)}</span> <button class="btn btn-sm btn-secondary" onclick="signOut()">Sign Out</button>`;
+      // Show admin link if user is admin
+      if (res.user.role === 'admin') {
+        const adminLink = document.getElementById('admin-link');
+        if (adminLink) adminLink.style.display = '';
+      } else {
+        const adminLink = document.getElementById('admin-link');
+        if (adminLink) adminLink.style.display = 'none';
+      }
     } else {
       el.innerHTML = '<a class="btn btn-sm btn-primary" href="/login.html">Sign In</a>';
+      const adminLink = document.getElementById('admin-link');
+      if (adminLink) adminLink.style.display = 'none';
     }
   } catch {
     el.innerHTML = '<a class="btn btn-sm btn-primary" href="/login.html">Sign In</a>';
+    const adminLink = document.getElementById('admin-link');
+    if (adminLink) adminLink.style.display = 'none';
   }
 }
 

@@ -23,16 +23,30 @@
           <p class="lead">Your invitations and updates</p>
         </div>
       </div>
-      <nav class="nav">
-        <a href="/dashboard.html">Dashboard</a>
-        <a href="/projects.html">Projects</a>
-        <a href="/todos.html">Todos</a>
-        <a href="/notes.html">Notes</a>
-        <a href="/contacts.html">Contacts</a>
-        <a href="/messages.html">Messages</a>
-        <button id="theme-toggle" title="Toggle theme">🌙</button>
-        <button id="help-toggle" title="Keyboard shortcuts (or press ?)">❓</button>
-        <span id="auth-actions"></span>
+      <nav class="nav" aria-label="Main navigation">
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="/dashboard.html">Dashboard</a>
+          <a href="/projects.html">Projects</a>
+          <a href="/todos.html">Todos</a>
+          <a href="/notes.html">Notes</a>
+          <a href="/contacts.html">Contacts</a>
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">More ▾</button>
+            <div class="nav-dropdown-menu">
+              <a href="/messages.html">Messages</a>
+              <a href="/profile.html">Profile</a>
+              <a href="/admin.html" id="admin-link" style="display:none">Admin</a>
+              <button id="help-toggle" title="Keyboard shortcuts (or press ?)" aria-label="Show keyboard shortcuts help">❓</button>
+            </div>
+          </div>
+          <button id="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">🌙</button>
+          <span id="auth-actions" role="status" aria-live="polite"></span>
+        </div>
       </nav>
     </header>
 
